@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CATCH THE BUDDY!!</title>
+    <title>EUGENE POLICE DEPARTMENT</title>
 </head>
 
 <style>
@@ -18,22 +18,26 @@ body {
     color: #b8b9ba;
 }
 
-header {
-    height:  225px;
-    width:  400px;
-    position: fixed;
+div {
     text-align: center;
     background: #3a586b;
     color: #b8b9ba;
     font-size: 16px;
-    border-style: solid;
-    border-color: #b8b9ba;
+    top: 50%;
+    left: 50%;
+    width: 30em;
+    height: 18em;
+    margin-top: -9em;
+    margin-left: -15em;
+    border: 1px solid #b8b9ba;  
+    position: fixed;
 }
 
 </style>
 
 <body>
-    
+
+<div>
 <h2>Enter location of husband:</h2>
 <input type="text" id="hus" name="hus" size="50"><br>
 <button onclick="hus()">FIND HUSBAND!</button><br><br>
@@ -41,7 +45,8 @@ header {
 <h2>Enter identity of kidnapper:</h2>
 <input type="text" id="kid" name="kid" size="12"><br>
 <button onclick="hus()">CATCH KIDNAPPER!</button><br>
-
+</div>
+    
 <script>
 //Initialize variables
 var hus_input, kid_input;
