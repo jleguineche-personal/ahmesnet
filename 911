@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CATCH THE BUDDY!!</title>
+</head>
+
+<style>
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    background: #0e9e21;
+    background-image: url("bush.png");
+}
+
+header {
+    height:  225px;
+    width:  400px;
+    position: fixed;
+    text-align: center;
+    background: #3a586b;
+    color: #b8b9ba;
+    font-size: 16px;
+    border-style: solid;
+    border-color: #b8b9ba;
+}
+
+</style>
+
+<body>
+
+
+
+<label for="name">Enter location of husband:</label>
+<input type="text" id="hus" name="hus" size="12">
+<button onclick="hus()">FIND HUSBAND!</button><br>
+
+<label for="name">Enter identity of kidnapper:</label>
+<input type="text" id="kid" name="kid" size="12">
+<button onclick="hus()">CATCH KIDNAPPER!</button><br>
+
+
+
+<script>
+//Initialize variables
+var hus_input, kid_input;
+
+//Husband 
+var steps, time_step, travel, time_tot 
+travel = 1 
+steps = 200 
+time_step = 5  
+time_tot = steps*time_step
+
+bud_run(1,travel,steps,time_step)
+let my_var = window.setInterval(bud_loco, time_tot,travel,steps,time_step);
+var var2
+
+//Function to move buddy once in any direction
+function bud_bump(c,d) {
+    if (c === 1){
+        //Move buddy right by d
+        bud_x = bud_x + d;
+        document.getElementById('buddy').style.left=bud_x+"px";
+    }
+
+    if (c === 2){
+        //Move buddy left by d
+        bud_x = bud_x - d;
+        document.getElementById('buddy').style.left=bud_x+"px";
+    }
+
+    if (c === 3){
+        //Move buddy down by d
+        bud_y = bud_y + d;
+        document.getElementById('buddy').style.top=bud_y+"px";
+    }
+
+    if (c === 4){
+        //Move buddy up by d
+        bud_y = bud_y - d;
+        document.getElementById('buddy').style.top=bud_y+"px";
+    }
+}
+
+//Function to move buddy repeatedly in one direction
+function bud_run(c,d,n,t) {
+    
+    for (let k = 0; k < n; k++) {   
+
+        var2 = window.setTimeout(bud_bump, k*t,c,d);
+
+    }    
+}
+
+//Function to move buddy many times in any direction
+function bud_loco(d,n,t) {
+    var c 
+    c = Math.round(Math.random()*4)
+
+    for (let k = 0; k < n; k++) {   
+
+        window.setTimeout(bud_bump, k*t,c,d);
+
+    }    
+}
+
+function win() {
+    dist_x = x - bud_x;
+    dist_y = y - bud_y;
+    dist = Math.sqrt(Math.pow(dist_x,2) + Math.pow(dist_y,2));
+    
+    if (dist < 250) {
+        window.clearInterval(my_var)
+        //window.clearInterval(var2)
+        bud_x = 450;
+        bud_y = 150;
+        x = 100; 
+        y = 275;
+        document.getElementById('buddy').style.left=bud_x+"px";
+        document.getElementById('buddy').style.top=bud_y+"px";
+        document.getElementById('jake').style.left=x+"px";
+        document.getElementById('jake').style.top=y+"px";
+
+        document.getElementById('cage').style.width=340+"px";
+        document.getElementById('cage').style.height=420+"px";
+        document.getElementById('win_text').innerHTML="YOU CAUGHT BUDDY!"
+    }
+}
+
+function left() {
+    n = 1
+    x = x - 50
+    document.getElementById('jake').style.left=x+"px";
+    win()
+}
+
+function right() {
+    n = 2
+    x = x + 50
+    document.getElementById('jake').style.left=x+"px";
+    win()
+}
+
+function up() {
+    n = 3
+    y = y - 50
+    document.getElementById('jake').style.top=y+"px";
+    win()
+}
+
+function down() {
+    n = 4
+    y = y + 50
+    document.getElementById('jake').style.top=y+"px";
+    win()
+}
+
+
+</script>
+
+</body>
+</html> 
