@@ -23,13 +23,12 @@ div {
     background: #3a586b;
     color: #b8b9ba;
     font-size: 16px;
-    top: 50%;
+  
     left: 50%;
     width: 30em;
     height: 18em;
-    margin-top: -9em;
+  
     margin-left: -15em;
-    border: 1px solid #b8b9ba;  
     position: fixed;
 }
 
@@ -39,129 +38,80 @@ div {
 
 <div>
 <h2>ENTER LOCATION OF HUSBAND:</h2>
-<input type="text" id="hus" name="hus" size="50"><br><br>
-<button onclick="hus()">FIND HUSBAND!</button><br><br>
+<input type="text" id="hus" name="hus" size="50"><br>
+<p id="hus_out"></p>
+<br>
 
 <h2>ENTER IDENTITY OF KIDNAPPER:</h2>
 <input type="text" id="kid" name="kid" size="50"><br<br>
-<button onclick="hus()">CATCH KIDNAPPER!</button><br>
+
+<button onclick="find()">FIND HUSBAND AND CATCH KIDNAPPER!</button><br>
+<p id="kid_out"></p>
+<br>
+
+<p id="free"></p><br>
+
+<center>
+<video id="vid" width="0" height="0" class="center" controls>
+  <source src="freedom.mp4" type="video/mp4">
+</video>
+</center>
+    
+    
 </div>
-    
 <script>
-//Initialize variables
-var hus_input, kid_input;
+//Husband Location 
+var hus_check, hus_input, kid_check, kid_input, comb;
 
-//Husband 
-var steps, time_step, travel, time_tot 
-travel = 1 
-steps = 200 
-time_step = 5  
-time_tot = steps*time_step
-
-bud_run(1,travel,steps,time_step)
-let my_var = window.setInterval(bud_loco, time_tot,travel,steps,time_step);
-var var2
-
-//Function to move buddy once in any direction
-function bud_bump(c,d) {
-    if (c === 1){
-        //Move buddy right by d
-        bud_x = bud_x + d;
-        document.getElementById('buddy').style.left=bud_x+"px";
-    }
-
-    if (c === 2){
-        //Move buddy left by d
-        bud_x = bud_x - d;
-        document.getElementById('buddy').style.left=bud_x+"px";
-    }
-
-    if (c === 3){
-        //Move buddy down by d
-        bud_y = bud_y + d;
-        document.getElementById('buddy').style.top=bud_y+"px";
-    }
-
-    if (c === 4){
-        //Move buddy up by d
-        bud_y = bud_y - d;
-        document.getElementById('buddy').style.top=bud_y+"px";
-    }
-}
-
-//Function to move buddy repeatedly in one direction
-function bud_run(c,d,n,t) {
+function find() {
+    //Get husband/kidnapper input
+    hus_input = document.getElementById("hus").value;
+    kid_input = document.getElementById("kid").value;
+    hus_check = 0
+    kid_check = 0 
     
-    for (let k = 0; k < n; k++) {   
+    //Check husband location
+    if(hus_input.includes("GLOBOCORP")) {
+    hus_check = 1;
 
-        var2 = window.setTimeout(bud_bump, k*t,c,d);
-
-    }    
-}
-
-//Function to move buddy many times in any direction
-function bud_loco(d,n,t) {
-    var c 
-    c = Math.round(Math.random()*4)
-
-    for (let k = 0; k < n; k++) {   
-
-        window.setTimeout(bud_bump, k*t,c,d);
-
-    }    
-}
-
-function win() {
-    dist_x = x - bud_x;
-    dist_y = y - bud_y;
-    dist = Math.sqrt(Math.pow(dist_x,2) + Math.pow(dist_y,2));
+    }
     
-    if (dist < 250) {
-        window.clearInterval(my_var)
-        //window.clearInterval(var2)
-        bud_x = 450;
-        bud_y = 150;
-        x = 100; 
-        y = 275;
-        document.getElementById('buddy').style.left=bud_x+"px";
-        document.getElementById('buddy').style.top=bud_y+"px";
-        document.getElementById('jake').style.left=x+"px";
-        document.getElementById('jake').style.top=y+"px";
+    //Check kidnapper identity
+    if(kid_input.includes("BEEZUS")) {
+    kid_check = 1;
 
-        document.getElementById('cage').style.width=340+"px";
-        document.getElementById('cage').style.height=420+"px";
-        document.getElementById('win_text').innerHTML="YOU CAUGHT BUDDY!"
+    }
+    
+    //Husband check
+    if(hus_check == 0){
+    document.getElementById("hus_out").innerHTML = "HUSBAND NOT FOUND :("
+    }
+    
+    if(hus_check == 1){
+    document.getElementById("hus_out").innerHTML = "YOU FOUND HUSBAND!!!"
+    }
+    
+    //Kidnapper check
+    if(kid_check == 0){
+    document.getElementById("kid_out").innerHTML = "NOT THE KIDNAPPER :("
+    }
+    
+    if(kid_check == 1){
+    document.getElementById("kid_out").innerHTML = "YOU GOT THE PERP!!!"
+    }
+    
+    //Combined check
+    comb = hus_check + kid_check; 
+    
+    if(comb == 1){
+    document.getElementById("free").innerHTML = "YOU MUST FIND HUSBAND AND IDENTIFY THE KILLER TO SAVE HUSBAND :("
+    }
+    
+    if(comb == 2){
+    document.getElementById("vid").width = "640";
+    document.getElementById("vid").height = "480";
     }
 }
-
-function left() {
-    n = 1
-    x = x - 50
-    document.getElementById('jake').style.left=x+"px";
-    win()
-}
-
-function right() {
-    n = 2
-    x = x + 50
-    document.getElementById('jake').style.left=x+"px";
-    win()
-}
-
-function up() {
-    n = 3
-    y = y - 50
-    document.getElementById('jake').style.top=y+"px";
-    win()
-}
-
-function down() {
-    n = 4
-    y = y + 50
-    document.getElementById('jake').style.top=y+"px";
-    win()
-}
-
 
 </script>
 
