@@ -1,53 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>EUGENE POLICE DEPARTMENT</title>
-</head>
 
-<style>
-
-html {
-    height: 100%;
-}
-
-body {
-    min-height: 100%;
-    background: #3a586b;
-    color: #b8b9ba;
-}
-
-div {
-    text-align: center;
-    background: #3a586b;
-    color: #b8b9ba;
-    font-size: 16px;
-  
-    left: 50%;
-    width: 30em;
-    height: 18em;
-  
-    margin-left: -15em;
-    position: fixed;
-}
-
-</style>
-
-<body>
-
-<div>
-<h2>ENTER LOCATION OF HUSBAND:</h2>
-<input type="text" id="hus" name="hus" size="50"><br>
-<p id="hus_out"></p>
-<br>
-
-<h2>ENTER IDENTITY OF KIDNAPPER:</h2>
-<input type="text" id="kid" name="kid" size="50"><br<br>
-
-<button onclick="find()">FIND HUSBAND AND CATCH KIDNAPPER!</button><br>
-<p id="kid_out"></p>
-<br>
 
 <p id="free"></p><br>
 
@@ -64,13 +15,13 @@ div {
 var hus_check, hus_input, kid_check, kid_input, comb;
 
 function find() {
-    //Get husband/kidnapper input
+    //Get husband/kidnapper input + initialize counters
     hus_input = document.getElementById("hus").value;
-    kid_input = document.getElementById("kid").value;
+    hus_input = hus_input.toUpperCase();
     
-    //Remove case sensitivty + initialize counters
-    hus_input = toUpperCase(hus_input);
-    kid_input = toUpperCase(kid_input):
+    kid_input = document.getElementById("kid").value;
+    kid_input = kid_input.toUpperCase();
+    
     hus_check = 0;
     kid_check = 0; 
     
@@ -114,6 +65,7 @@ function find() {
     if(comb == 2){
     document.getElementById("vid").width = "640";
     document.getElementById("vid").height = "480";
+    document.getElementById("free").innerHTML = "";
     }
 }
 
