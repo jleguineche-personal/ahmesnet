@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
 
+<meta name="viewport" content="width=device-width, content="height=device-height, initial-scale=1.0">
+
+<head>
+  <link rel="stylesheet" href="styles.css">
+</head>  
+  
 <script>
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
@@ -33,9 +39,9 @@ function includeHTML() {
 
 <body>
 
-<div w3-include-html="header.html"></div> 
-<div w3-include-html="menu.html"></div> 
-<div w3-include-html="page_ex.html"></div> 
+<div class = "header" w3-include-html="header.html"></div> 
+<div class = "menu" w3-include-html="menu.html"></div> 
+<div class = "body" w3-include-html="page_ex.html"></div> 
 
 <script>
 includeHTML();
